@@ -3,7 +3,7 @@ import { Book } from "../models/bookModel.js";
 
 const router = express.Router();
 
-router.get('/books', async (req, res) => {
+router.get('/', async (req, res) => {
     try{
         const books = await Book.find();
         return res.status(200).json({
@@ -20,7 +20,7 @@ router.get('/books', async (req, res) => {
     }
 });
 
-router.get('/books/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try{
         const books = await Book.findById(req.params.id);
         return res.status(500).json(books)
@@ -35,7 +35,7 @@ router.get('/books/:id', async (req, res) => {
 });
 
 
-router.post('/books', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         if (!req.body.title || !req.body.author || !req.body.publishYear) {
             return res.status(400).send({

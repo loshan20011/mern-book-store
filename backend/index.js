@@ -1,12 +1,17 @@
 import express from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
-import router from './routes/books.js';
+import booksRoute from './routes/booksRoute.js';
 
 const app = express();
 
 app.use(express.json());
-app.use('/', router);
+app.get('/', (req,res) => {
+    console.log(req);
+    return res.status(234).send("Welcome to Book Store")
+})
+
+app.use('/books', booksRoute);
 
 mongoose.connect(mongoDBURL)
 .then(() => {
